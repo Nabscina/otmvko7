@@ -4,14 +4,12 @@ import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-public class GraafinenLaskin implements Runnable, ActionListener {
+public class GraafinenLaskin implements Runnable {
 
     private JFrame frame;
     private JTextField tuloskentta;
@@ -54,9 +52,11 @@ public class GraafinenLaskin implements Runnable, ActionListener {
         miinus.setName("-");
         nollaa.setName("Z");
 
-        plus.addActionListener(this);
-        miinus.addActionListener(this);
-        nollaa.addActionListener(this);
+        TapahtumanKasittelija tk = new TapahtumanKasittelija(tuloskentta, syotekentta, plus, miinus, nollaa, laskin);
+
+        plus.addActionListener(tk);
+        miinus.addActionListener(tk);
+        nollaa.addActionListener(tk);
 
         nollaa.setEnabled(false);
         JPanel paneli = new JPanel(new GridLayout(1, 3));
@@ -64,32 +64,5 @@ public class GraafinenLaskin implements Runnable, ActionListener {
         paneli.add(miinus);
         paneli.add(nollaa);
         container.add(paneli);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-
-        int syote = 0;
-
-        try {
-            syote = Integer.parseInt(syotekentta.getText());
-        } catch (Exception e) {
-        }
-
-        if (ae.getSource() == plus) {
-            laskin.summa(syote);
-        } else if (ae.getSource() == miinus) {
-            laskin.erotus(syote);
-        } else {
-            laskin.nollaa();
-        }
-
-        syotekentta.setText("");
-        tuloskentta.setText("" + laskin.arvo());
-        if (laskin.arvo() == 0) {
-            nollaa.setEnabled(false);
-        } else {
-            nollaa.setEnabled(true);
-        }
     }
 }
