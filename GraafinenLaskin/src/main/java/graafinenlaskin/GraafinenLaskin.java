@@ -17,7 +17,6 @@ public class GraafinenLaskin implements Runnable {
     private JButton plus;
     private JButton miinus;
     private JButton nollaa;
-    private Laskin laskin = new Laskin();
 
     @Override
     public void run() {
@@ -46,23 +45,34 @@ public class GraafinenLaskin implements Runnable {
         miinus = new JButton("-");
         nollaa = new JButton("Z");
 
-        tuloskentta.setName("tulos");
-        syotekentta.setName("syote");
-        plus.setName("+");
-        miinus.setName("-");
-        nollaa.setName("Z");
+        asetaNimet();
 
-        TapahtumanKasittelija tk = new TapahtumanKasittelija(tuloskentta, syotekentta, plus, miinus, nollaa, laskin);
+        TapahtumanKasittelija tk = new TapahtumanKasittelija(tuloskentta, syotekentta, plus, miinus, nollaa);
 
         plus.addActionListener(tk);
         miinus.addActionListener(tk);
         nollaa.addActionListener(tk);
 
         nollaa.setEnabled(false);
+        container.add(lisaaJPanel());
+    }
+
+    public JPanel lisaaJPanel() {
+
         JPanel paneli = new JPanel(new GridLayout(1, 3));
         paneli.add(plus);
         paneli.add(miinus);
         paneli.add(nollaa);
-        container.add(paneli);
+
+        return paneli;
+    }
+
+    public void asetaNimet() {
+
+        tuloskentta.setName("tulos");
+        syotekentta.setName("syote");
+        plus.setName("+");
+        miinus.setName("-");
+        nollaa.setName("Z");
     }
 }

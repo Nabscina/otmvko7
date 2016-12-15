@@ -14,14 +14,14 @@ public class TapahtumanKasittelija implements ActionListener {
     private JButton nollaa;
     private Laskin laskin;
 
-    public TapahtumanKasittelija(JTextField tulos, JTextField syote, JButton plus, JButton miinus, JButton nollaa, Laskin laskin) {
+    public TapahtumanKasittelija(JTextField tulos, JTextField syote, JButton plus, JButton miinus, JButton nollaa) {
 
         this.tuloskentta = tulos;
         this.syotekentta = syote;
         this.plus = plus;
         this.miinus = miinus;
         this.nollaa = nollaa;
-        this.laskin = laskin;
+        this.laskin = new Laskin();
     }
 
     @Override
