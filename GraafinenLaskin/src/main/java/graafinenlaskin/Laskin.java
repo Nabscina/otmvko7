@@ -1,14 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package graafinenlaskin;
 
-/**
- *
- * @author pebmatts
- */
 public class Laskin {
-    
+
+    private int arvo;
+
+    public Laskin() {
+
+        arvo = 0;
+    }
+
+    public int arvo() {
+
+        return arvo;
+    }
+
+    public void summa(int a) {
+
+        arvo += a;
+    }
+
+    public void erotus(int a) {
+
+        arvo -= a;
+    }
+
+    public void nollaa() {
+
+        arvo = 0;
+    }
+
 }
